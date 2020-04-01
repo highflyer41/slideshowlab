@@ -3,6 +3,7 @@ let slideshow = {
     currentPhotoIndex: 0,
     nextPhoto: function() {
         if(this.currentPhotoIndex == (this.photoList.length -1)) {
+            this.pause();
             console.log("End of slideshow");
         } else {
             this.currentPhotoIndex++;
@@ -11,6 +12,7 @@ let slideshow = {
     },
     prevPhoto: function() {
         if(this.currentPhotoIndex == 0) {
+            this.pause();
             console.log("End of slideshow");
         } else {
             this.currentPhotoIndex--;
@@ -19,21 +21,15 @@ let slideshow = {
     },
     getCurrentPhoto: function() {
         return this.photoList[this.currentPhotoIndex];
+    },
+    playInterval: null,
+    play: function() {
+        playInterval = setInterval(()=>{this.nextPhoto()}, 1000);
+    },
+    pause: function() {
+        clearInterval(playInterval);
     }
 };
 
 console.log(slideshow.getCurrentPhoto());
-slideshow.nextPhoto();
-slideshow.nextPhoto();
-slideshow.prevPhoto();
-slideshow.nextPhoto();
-slideshow.nextPhoto();
-slideshow.nextPhoto();
-slideshow.nextPhoto();
-slideshow.nextPhoto();
-slideshow.prevPhoto();
-slideshow.prevPhoto();
-slideshow.prevPhoto();
-slideshow.prevPhoto();
-slideshow.prevPhoto();
-slideshow.prevPhoto();
+slideshow.play();

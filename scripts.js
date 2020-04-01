@@ -24,7 +24,7 @@ let slideshow = {
     },
     playInterval: null,
     play: function() {
-        playInterval = setInterval(()=>{this.nextPhoto()}, 1000);
+        playInterval = setInterval(()=>{this.nextPhoto()}, 2000);
     },
     pause: function() {
         clearInterval(playInterval);

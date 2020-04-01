@@ -5,10 +5,11 @@ let slideshow = {
         if(this.currentPhotoIndex == (this.photoList.length -1)) {
             this.pause();
             console.log("End of slideshow");
+            this.playRev();
         } else {
             this.currentPhotoIndex++;
             console.log(this.photoList[this.currentPhotoIndex]);
-        };
+        }
     },
     prevPhoto: function() {
         if(this.currentPhotoIndex == 0) {
@@ -17,17 +18,20 @@ let slideshow = {
         } else {
             this.currentPhotoIndex--;
             console.log(this.photoList[this.currentPhotoIndex]);
-        };
+        }
     },
     getCurrentPhoto: function() {
         return this.photoList[this.currentPhotoIndex];
     },
     playInterval: null,
     play: function() {
-        playInterval = setInterval(()=>{this.nextPhoto()}, 2000);
+        this.playInterval = setInterval(()=>{this.nextPhoto()}, 2000);
+    },
+    playRev: function() {
+        this.playInterval = setInterval(()=>{this.prevPhoto()}, 2000);
     },
     pause: function() {
-        clearInterval(playInterval);
+        clearInterval(this.playInterval);
     }
 };
 
